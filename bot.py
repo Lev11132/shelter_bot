@@ -17,8 +17,8 @@ async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE):
     df["distance"] = df.apply(lambda row: geodesic(user_location, (row["latitude"], row["longitude"])).meters, axis=1)
     nearest = df.nsmallest(3, "distance")
 
-    response = "Найближчі укриття:
-"
+    response = "Найближчі укриття:\n"
+    
     for _, row in nearest.iterrows():
         url = f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}"
         response += f"{row['name']} – {int(row['distance'])} м
