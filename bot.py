@@ -21,10 +21,8 @@ async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     for _, row in nearest.iterrows():
         url = f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}"
-        response += f"{row['name']} – {int(row['distance'])} м
-{url}
+        response += f"{row['name']} – {int(row['distance'])} м\\n{url}\\n\\n"
 
-"
 
     await update.message.reply_text(response)
 
