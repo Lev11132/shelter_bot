@@ -64,9 +64,7 @@ async def radius_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text(f"Укриттів типу '{selected_type}' у межах {radius // 1000} км не знайдено.")
         return
 
-   response = f"Тип: {selected_type}, радіус: {radius // 1000} км\n\n"
-
-
+    response = f"Тип: {selected_type}, радіус: {radius // 1000} км\n\n"
     for _, row in nearby.iterrows():
         url = f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}"
         response += f"{row['name']} – {int(row['distance'])} м\n{url}\n\n"
