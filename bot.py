@@ -12,7 +12,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 scheduler = AsyncIOScheduler()
 
-ALLOWED_USERS = [123456789]  # <-- твій Telegram user_id
+ALLOWED_USERS = [350174070]  # <-- твій Telegram user_id
 
 def is_authorized(user_id):
     return user_id in ALLOWED_USERS
