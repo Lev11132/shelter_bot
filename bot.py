@@ -24,16 +24,19 @@ async def status_cmd(message: types.Message):
     data = user_data.get(message.from_user.id, {})
     checklist_status = '✅' if data.get('checklist') else '❌'
     report_status = '✅' if data.get('report') else '❌'
-    await message.reply(
-        f"📊 Статус дня:
+    text = (
+        "📊 Статус дня:
 "
         f"- Ранкова перевірка: {checklist_status}
 "
         f"- Вечірній звіт: {report_status}"
     )
+    await message.reply(text)
 
 @dp.message_handler(commands=['report'])
 async def report_cmd(message: types.Message):
+    if message.from_user.id not in user_data:
+        user_data[message.from_user.id] = {}
     user_data[message.from_user.id]['report'] = True
     await message.reply("📓 Вечірній звіт прийнято. Завтра — новий день.")
 
