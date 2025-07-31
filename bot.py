@@ -22,9 +22,15 @@ async def start_cmd(message: types.Message):
 @dp.message_handler(commands=['status'])
 async def status_cmd(message: types.Message):
     data = user_data.get(message.from_user.id, {})
-    await message.reply(f"📊 Статус дня:
-- Ранкова перевірка: {'✅' if data.get('checklist') else '❌'}
-- Вечірній звіт: {'✅' if data.get('report') else '❌'}")
+    checklist_status = '✅' if data.get('checklist') else '❌'
+    report_status = '✅' if data.get('report') else '❌'
+    await message.reply(
+        f"📊 Статус дня:
+"
+        f"- Ранкова перевірка: {checklist_status}
+"
+        f"- Вечірній звіт: {report_status}"
+    )
 
 @dp.message_handler(commands=['report'])
 async def report_cmd(message: types.Message):
